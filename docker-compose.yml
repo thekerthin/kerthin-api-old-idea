@@ -1,0 +1,46 @@
+version: '3.1'
+services:
+  postgresql:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: kerthin
+    volumes:
+      - ./.database:/docker-entrypoint-initdb.d
+
+  kong_migration:
+    image: kong
+    command: ['./scripts/wait.sh', '--', 'kong migrations bootstrap']
+    environment:
+      - KONG_PG_HOST=postgresql
+      - KONG_PG_USER=root
+      - KONG_PG_PASSWORD=password
+      - WAIT_HOSTS=postgresql:5432
+      - WAIT_HOSTS_TIMEOUT=120
+    depends_on:
+      - postgresql
+    volumes:
+      - ./scripts/wait.sh:/scripts/wait.sh
+
+  kong:
+    image: kong
+    command: sh -c "kong start"
+    ports:
+      - 8001:8001
+      - 8000:8000
+      - 8443:8443
+      - 8444:8444
+    environment:
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+      - KONG_ADMIN_LISTEN_SSL=0.0.0.0:8444
+      - KONG_PG_HOST=postgresql
+      - KONG_PG_USER=root
+      - KONG_PG_PASSWORD=password
+
+  konga:
+    image: pantsel/konga
+    ports:
+      - 1337:1337

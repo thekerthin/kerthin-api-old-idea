@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  develop:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: "Install Dependencies"
+          command: echo "fix me"
+      - run:
+          name: "Docker Build/Push"
+          command: |
+            echo $GOOGLE_AUTH > $HOME/gcp-key.json
+            cat $HOME/gcp-key.json | docker login -u _json_key --password-stdin https://gcr.io
+            docker build --rm=false -t gcr.io/$GCP_PROJECT/$IMAGE_NAME:$CIRCLE_SHA1 .
+            docker push gcr.io/$GCP_PROJECT/$IMAGE_NAME:$CIRCLE_SHA1
+      - run:
+          name: "K8S Deployment"
+          command: |
+            echo $HOME/gcp-key.json
+            gcloud auth activate-service-account --key-file=$HOME/gcp-key.json
+            gcloud --quiet config set project $GCP_PROJECT
+            curl -O https://storage.googleapis.com/kubernetes-release/release/v1.8.4/bin/linux/amd64/kubectl
+            chmod +x kubectl
+            # gcloud components update
+            # gcloud components install kubectl
+            gcloud container clusters get-credentials $K8S_CLUSTER_NAME --zone $K8S_CLUSTER_ZONE --project $GCP_PROJECT
+            ./kubectl set image deployment/$IMAGE_NAME $IMAGE_NAME=gcr.io/$GCP_PROJECT/$IMAGE_NAME:$CIRCLE_SHA1 --namespace=develop
+  production:
+    machine: true
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "83:8c:56:4e:19:8c:45:18:0d:b6:d5:3e:49:c6:9a:64"
+      - run: |
+          echo 'from production ...'
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - develop:
+          filters:
+            branches:
+              only: develop
+      - production:
+          filters:
+            branches:
+              only: master
