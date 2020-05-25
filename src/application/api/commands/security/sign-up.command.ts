@@ -1,4 +1,4 @@
-import { Command } from '@addapptables/microservice';
+import { Command } from '@kerthin/microservice';
 import { SignUpDto } from '../../dtos/security/sign-up.dto';
 
 export class SignUpCommand extends Command<SignUpDto> {

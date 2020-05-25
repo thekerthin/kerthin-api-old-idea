@@ -5,7 +5,7 @@ import {
   MicroserviceModule,
   ManagerAdapterBus,
   LocalBusAdapter,
-} from '@addapptables/microservice';
+} from '@kerthin/microservice';
 
 @Module({
   imports: [

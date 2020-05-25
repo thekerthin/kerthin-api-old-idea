@@ -1,4 +1,4 @@
-import { Class } from '@addapptables/microservice';
+import { Class } from '@kerthin/microservice';
 import { plainToClass, ClassTransformOptions } from 'class-transformer';
 
 export function mapper<T, V>(

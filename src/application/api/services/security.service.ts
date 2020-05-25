@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { Broker } from '@addapptables/microservice';
+import { Broker } from '@kerthin/microservice';
 import * as R from 'ramda';
 import { SignUpDto, SignInDto } from '../dtos/security';
 import { SignUpCommand } from '../commands/security/sign-up.command';
