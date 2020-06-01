@@ -1,12 +1,13 @@
 import * as R from 'ramda';
 import * as https from 'https';
+import { Http } from '@kerthin/utils';
 import { ConsumerException } from '../exceptions';
 import { Consumer } from './consumer';
 import {
   RegisterOAuth2ConsumerParams,
   RegisterBasicAuthConsumerParams,
 } from './interface';
-import { Http, SystemErrorCodeEnum } from '../../../../shared/utils';
+import { SystemErrorCodeEnum } from '../../../../shared/utils';
 
 export class KongConsumerAdapter extends Consumer {
   private readonly http: Http;
