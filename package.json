@@ -38,7 +38,8 @@
     "test-e2e": "jest --config ./tests/jest-e2e.json"
   },
   "dependencies": {
-    "@addapptables/microservice": "^0.0.3-0",
+    "@kerthin/microservice": "^0.0.2-0",
+    "@kerthin/utils": "^0.0.1-0",
     "@nestjs/common": "^7.0.11",
     "@nestjs/core": "^7.0.11",
     "@nestjs/platform-express": "^7.0.11",

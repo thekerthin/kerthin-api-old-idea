@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { mapper } from '@kerthin/utils';
 import { Consumer } from '@infrastructure/security/adapters';
 import UserRepository from '@infrastructure/database/repositories/user.repository';
 import { User } from '@infrastructure/database/entities/user.entity';
 import { SignUpDto, SignInDto } from '@application/api/dtos/security';
-import { mapper } from '../../shared/utils';
 
 @Injectable()
 export default class SecurityService {

@@ -1,4 +1,4 @@
-import { CommandHandler, ICommandHandler } from '@addapptables/microservice';
+import { CommandHandler, ICommandHandler } from '@kerthin/microservice';
 import { SignUpCommand } from '@application/api/commands/security/sign-up.command';
 import SecurityService from '../../services/security.service';
 
