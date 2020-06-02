@@ -476,6 +476,17 @@
     rxjs "^6.5.5"
     uuid "^8.0.0"
 
+"@kerthin/security@^0.0.1-0":
+  version "0.0.1-0"
+  resolved "https://registry.yarnpkg.com/@kerthin/security/-/security-0.0.1-0.tgz#23fc95e797e85a12c77cfdcf1710e107d27a3887"
+  integrity sha512-rmqZ2lIAo3uYrJY1SdPZBGq6OkFfS9KgcyauUlG4Nbze5q9EanIMEfRBz3kACdrwzhkKHyesrMxAFEPjYi2z0A==
+  dependencies:
+    "@kerthin/utils" "^0.0.1-0"
+    "@nestjs/common" "^7.0.11"
+    ramda "^0.27.0"
+    reflect-metadata "^0.1.13"
+    rxjs "^6.5.5"
+
 "@kerthin/utils@^0.0.1-0":
   version "0.0.1-0"
   resolved "https://registry.yarnpkg.com/@kerthin/utils/-/utils-0.0.1-0.tgz#bf1d14f7e416e32f7b59b7120ede3b156696c9c1"
