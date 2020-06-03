@@ -15,7 +15,8 @@
     "paths": {
       "@application/*": ["application/*"],
       "@domain/*": ["domain/*"],
-      "@infrastructure/*": ["infrastructure/*"]
+      "@infrastructure/*": ["infrastructure/*"],
+      "@shared/*": ["shared/*"]
     }
   },
   "include": ["src/**/*.ts"],
