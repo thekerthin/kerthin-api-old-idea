@@ -4,7 +4,8 @@ import { Consumer, ConsumerExistsException } from '@kerthin/security';
 import UserRepository from '@infrastructure/database/repositories/user.repository';
 import { User } from '@infrastructure/database/entities/user.entity';
 import { SignUpDto, SignInDto } from '@application/api/dtos/security';
-import { SystemException, SystemErrorCodeEnum } from '../../shared/utils';
+import { SystemException } from '@shared/exceptions';
+import { SystemErrorCodeEnum } from '@shared/enums';
 
 @Injectable()
 export default class SecurityService {
