@@ -13,11 +13,13 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
       return;
     }
 
+    const status =
+      SystemErrorCodeMap.get(exception.code) ||
+      HttpStatus.INTERNAL_SERVER_ERROR;
+
     response.status(status).json({
+      statusCode: status,
       error: exception.error,
-      statusCode:
-        SystemErrorCodeMap.get(exception.code) ||
-        HttpStatus.INTERNAL_SERVER_ERROR,
     });
   }
 }
