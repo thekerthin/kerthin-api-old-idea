@@ -497,6 +497,16 @@
     glob "^7.1.6"
     ramda "^0.27.0"
 
+"@kerthin/utils@^0.0.2-0":
+  version "0.0.2-0"
+  resolved "https://registry.yarnpkg.com/@kerthin/utils/-/utils-0.0.2-0.tgz#371336fa0bf0becd2b4e2aae2f342606f938a3c6"
+  integrity sha512-1V8FSdqxgt0jRhL9y0/Bl/9mhz0FRCMTKhqSF0Ng4JVH9nxOd+HiqkqJX9q+RIDCiLJQdQNc/X2211M5J6ct1A==
+  dependencies:
+    axios "^0.19.2"
+    class-transformer "^0.2.3"
+    glob "^7.1.6"
+    ramda "^0.27.0"
+
 "@nestjs/common@^7.0.11":
   version "7.0.13"
   resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-7.0.13.tgz#7effc4c0a00307121151547fe8f7e9ea10d0c256"

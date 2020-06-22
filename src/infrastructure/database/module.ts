@@ -1,8 +1,11 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { getPrototypes } from '@kerthin/utils';
 
-import UserRepository from './repositories/user.repository';
+const repositories = getPrototypes(
+  `${__dirname}/repositories/*.repository{.ts,.js}`,
+);
 
 const dbConfig = TypeOrmModule.forRoot({
   type: 'postgres',
@@ -11,11 +14,11 @@ const dbConfig = TypeOrmModule.forRoot({
   migrations: [__dirname + '/migrations/*{.ts,.js}'],
 });
 
-const providerRepositories = TypeOrmModule.forFeature([UserRepository]);
+const providerRepositories = TypeOrmModule.forFeature([...repositories]);
 
 @Module({
   imports: [providerRepositories, dbConfig],
-  providers: [UserRepository],
+  providers: [...repositories],
   exports: [providerRepositories],
 })
 export class DatabaseModule implements OnModuleInit {
