@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common';
+import { getPrototypes, getPrototypesForDI } from '@kerthin/utils';
 
-// TODO: load dynamically these dependencies
-
-import HealthController from './controllers/health.controller';
-import SecurityController from './controllers/security.controller';
-
-import SecurityService from './services/security.service';
-
-// const controllers = getPrototypes(`${__dirname}/controllers/*.controller{.ts,.js}`);
-// const services = getPrototypes(`${__dirname}/services/*.service{.ts,.js}`);
+const controllers = getPrototypes(
+  `${__dirname}/controllers/*.controller{.ts,.js}`,
+);
+const services = getPrototypesForDI(`${__dirname}/services/*.service{.ts,.js}`);
 
 @Module({
-  controllers: [HealthController, SecurityController],
-  providers: [SecurityService],
+  controllers: [...controllers],
+  providers: [...services],
 })
 export class ApiModule {}

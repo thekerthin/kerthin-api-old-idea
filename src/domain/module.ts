@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { SecurityModule, KongConsumerAdapter } from '@kerthin/security';
+import { getPrototypesForDI } from '@kerthin/utils';
 
-import SignUpHandler from './handlers/security/sign-up.handler';
-import SignInHandler from './handlers/security/sign-in.handler';
-import SecurityService from './services/security.service';
 import { DatabaseModule } from '@infrastructure/database/module';
+
+const handlers = getPrototypesForDI(
+  `${__dirname}/handlers/**/*.handler{.ts,.js}`,
+);
+const services = getPrototypesForDI(`${__dirname}/services/*.service{.ts,.js}`);
 
 @Module({
   imports: [
@@ -13,6 +16,6 @@ import { DatabaseModule } from '@infrastructure/database/module';
       consumer: KongConsumerAdapter,
     }),
   ],
-  providers: [SignUpHandler, SignInHandler, SecurityService],
+  providers: [...handlers, ...services],
 })
 export class DomainModule {}
