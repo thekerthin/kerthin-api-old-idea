@@ -1,26 +1,27 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Broker } from '@kerthin/microservice';
 import * as R from 'ramda';
-import { SignUpDto, SignInDto } from '../dtos/security';
-import { SignUpCommand } from '../commands/security/sign-up.command';
-import { SignInCommand } from '../commands/security/sign-in.command';
+
+import { CreatePostDto } from '../dtos/post';
+import { CreatePostCommand } from '../commands/post';
+import { FindAllPostQuery } from '../queries/post';
 
 @Injectable()
-export class SecurityService {
+export class PostService {
   constructor(private readonly broker: Broker) {}
 
-  async signUp(data: SignUpDto) {
+  async create(data: CreatePostDto) {
     return this.broker
       .start()
-      .add(new SignUpCommand(data))
+      .add(new CreatePostCommand(data))
       .end<any>()
       .then(R.prop('data'));
   }
 
-  async signIn(data: SignInDto) {
+  async findAll() {
     return this.broker
       .start()
-      .add(new SignInCommand(data))
+      .add(new FindAllPostQuery({}))
       .end<any>()
       .then(R.prop('data'));
   }

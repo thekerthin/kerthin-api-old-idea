@@ -1,7 +1,7 @@
 import { ApiTags } from '@nestjs/swagger';
 import { Controller, Post, Request, Body, Headers } from '@nestjs/common';
 import { SignUpDto, SignInDto } from '../dtos/security';
-import SecurityService from '../services/security.service';
+import { SecurityService } from '../services/security.service';
 
 @ApiTags('Security')
 @Controller('security')
