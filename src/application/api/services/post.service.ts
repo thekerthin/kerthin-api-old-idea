@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Broker } from '@kerthin/microservice';
 import * as R from 'ramda';
 
-import { CreatePostDto } from '../dtos/post';
+import { CreatePostDto, PostDto } from '../dtos/post';
 import { CreatePostCommand } from '../commands/post';
 import { FindAllPostQuery } from '../queries/post';
 
@@ -18,11 +18,11 @@ export class PostService {
       .then(R.prop('data'));
   }
 
-  async findAll() {
+  async findAll(): Promise<PostDto[]> {
     return this.broker
       .start()
       .add(new FindAllPostQuery({}))
-      .end<any>()
-      .then(R.prop('data'));
+      .end()
+      .then<PostDto[]>(R.prop('data'));
   }
 }

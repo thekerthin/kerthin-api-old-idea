@@ -6,7 +6,7 @@ import { PostService } from '../../services/post.service';
 export class FindAllPostHandler implements IQueryHandler<FindAllPostQuery> {
   constructor(private readonly postService: PostService) {}
 
-  handle(event: FindAllPostQuery): any {
+  handle(query: FindAllPostQuery) {
     return this.postService.findAll();
   }
 }

@@ -7,8 +7,8 @@ dotenvSafe.config();
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
 import { AllExceptionsFilter } from '@application/api/filters';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,10 +18,9 @@ async function bootstrap() {
   );
 
   const options = new DocumentBuilder()
-    .setTitle('Kerthin')
-    .setDescription('Kerthin App')
+    .setTitle('Kerthin API')
+    .setDescription('kerthin-api')
     .setVersion('0.0.1')
-    .addTag('health')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
