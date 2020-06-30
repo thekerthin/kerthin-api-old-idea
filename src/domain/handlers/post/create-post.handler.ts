@@ -3,7 +3,7 @@ import { CreatePostCommand } from '@application/api/commands/post';
 import { PostService } from '../../services/post.service';
 
 @CommandHandler(CreatePostCommand)
-export class SignInHandler implements ICommandHandler<CreatePostCommand> {
+export class CreatePostHandler implements ICommandHandler<CreatePostCommand> {
   constructor(private readonly postService: PostService) {}
 
   handle(command: CreatePostCommand) {
